@@ -7,6 +7,7 @@ enum TokenDef {
 	TMathOpenDisplay;
 	TMathCloseDisplay;
 	TWordspace;
+	TBreakspace;
 	TSequence(name:String);
 	TText(text:String);
 }
