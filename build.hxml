@@ -1,0 +1,7 @@
+-js bin/epubify.js
+-main Main
+-cp src
+-lib assertion
+-lib hxparse
+-lib hxnodejs
+

@@ -1,0 +1,2 @@
+typedef Pos = hxparse.Position;
+
