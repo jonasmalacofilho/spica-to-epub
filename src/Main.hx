@@ -11,6 +11,8 @@ class Main {
 				var tex = Parser.parse(input);
 				FileSystem.createDirectory(output);
 				File.saveContent(Path.join([output, "ast.json"]), haxe.Json.stringify(tex, "  "));
+				var writer = new Writer(Path.join([output, '${new Path(input).file}.epub']));
+				writer.write(tex);
 			case other:
 				assert(false, other, "Usage: epubify <input-root> <output-dir>");
 			}
