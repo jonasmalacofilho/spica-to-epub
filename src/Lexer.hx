@@ -24,8 +24,11 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 			else
 				mk(lexer, TBreakspace);
 		},
+		"%[^\r\n]*" => mk(lexer, TComment(lexer.current.substr(1))),
 		"\\\\([a-zA-Z@]+)" => mk(lexer, TSequence(lexer.current.substr(1))),
-		"\\\\[$\\- ,&]" => mk(lexer, TText(lexer.current.substr(1))),
+		"\\\\[$,&%]" => mk(lexer, TText(lexer.current.substr(1))),
+		"\\\\-" => mk(lexer, TText("")),
+		"(~)|(\\\\ )" => mk(lexer, TWordspace),
 		"\\\\\\\\" => mk(lexer, TWordspace),
 		"\\\\\\[" => mk(lexer, TMathOpenDisplay),
 		"\\\\\\]" => mk(lexer, TMathOpenDisplay),
@@ -33,7 +36,7 @@ class Lexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		"}" => mk(lexer, TBraceClose),
 		"\\[" => mk(lexer, TBracketOpen),
 		"\\]" => mk(lexer, TBracketClose),
-		"[^\\\\{}\\[\\]]+" => mk(lexer, TText(lexer.current))
+		"[^ \\\\{}\\[\\]%]+" => mk(lexer, TText(lexer.current))
 	];
 
 	public function new(path)

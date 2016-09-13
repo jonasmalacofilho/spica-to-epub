@@ -1,19 +1,17 @@
 enum TokenDef {
 	TEof;
+	TWordspace;
+	TBreakspace;
+	TComment(comment:String);
 	TBraceOpen;
 	TBraceClose;
 	TBracketOpen;
 	TBracketClose;
 	TMathOpenDisplay;
 	TMathCloseDisplay;
-	TWordspace;
-	TBreakspace;
 	TSequence(name:String);
 	TText(text:String);
 }
 
-typedef Token = {
-	def:TokenDef,
-	pos:Pos
-}
+typedef Token = GenElem<TokenDef>;
 
